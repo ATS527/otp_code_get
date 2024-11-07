@@ -1,0 +1,35 @@
+<html>
+<body>
+    <span id="otp">
+        OTP
+    </span>
+</body>
+
+
+
+    <script>
+
+        let data;
+
+        const ac = new AbortController();
+
+        setTimeout(() => {
+            ac.abort();
+        },10000)
+        navigator.credentials
+      .get({
+        otp: { transport: ["sms"] },
+        signal: ac.signal,
+      })
+      .then((otp) => {
+        // When the OTP is received by the app client, enter it into the form
+        // input and submit the form automatically
+      document.getElementById("otp").innerHTML(otp.code)
+    })
+      .catch((err) => {
+      document.getElementById("otp").innerHTML(err.message)
+
+        console.error(err);
+      });
+        </script>
+</html>
