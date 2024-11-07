@@ -21,7 +21,7 @@
           signal: ac.signal,
         })
         .then((otp) => {
-          data = otp;
+          data = otp.code;
           document.getElementById("otp").innerText = data;
         })
         .catch((err) => {
